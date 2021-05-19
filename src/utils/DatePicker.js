@@ -9,7 +9,7 @@ import {
 
 export default function DataPicker() {
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -21,7 +21,7 @@ export default function DataPicker() {
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
-          label="Date picker dialog"
+          label="Date"
           format="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
