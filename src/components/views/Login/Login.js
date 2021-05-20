@@ -27,8 +27,6 @@ const Login = () => {
     <div className={styles.component}>
       <form className={classes.root} noValidate autoComplete="off">
         <TextField className={styles.textField} id="outlined-basic" label="Login" variant="outlined" />
-      </form>
-      <form className={classes.root} noValidate autoComplete="off">
         <TextField className={styles.textField} id="outlined-basic" label="Password" variant="outlined" />
       </form>
       <Button

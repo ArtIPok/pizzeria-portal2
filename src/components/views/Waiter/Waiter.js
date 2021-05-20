@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import styles from './Waiter.module.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,12 +11,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const demoContent = [
-  {id: '1', status: 'free', order: null},
+  {id: '1', status: 'free', order: 234},
   {id: '2', status: 'thinking', order: null},
   {id: '3', status: 'ordered', order: 123},
-  {id: '4', status: 'prepared', order: 234},
-  {id: '5', status: 'delivered', order: 345},
-  {id: '6', status: 'paid', order: 456},
 ];
 
 const renderActions = status => {
@@ -22,7 +21,6 @@ const renderActions = status => {
     case 'free':
       return (
         <>
-          <Button>thinking</Button>
           <Button>new order</Button>
         </>
       );
@@ -73,7 +71,7 @@ const Waiter = () => (
             </TableCell>
             <TableCell>
               {row.order && (
-                <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
+                <Button component={NavLink} to={`${process.env.PUBLIC_URL}/waiter/order/:${row.order}`}>
                   {row.order}
                 </Button>
               )}
@@ -89,16 +87,3 @@ const Waiter = () => (
 );
 
 export default Waiter;
-
-/* class Waiter extends React.Component {
-  render () {
-    return (
-      <div className={styles.component}>
-        <h2 className={styles.title}>Waiter view</h2>
-        <Link to={`${process.env.PUBLIC_URL}/waiter/order`} activeClassName='active'>Waiter order</Link>
-        <Link to={`${process.env.PUBLIC_URL}/waiter/order/new`} activeClassName='active'>Waiter order new</Link>
-
-      </div>
-    );
-  }
-}*/

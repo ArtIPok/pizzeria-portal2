@@ -10,6 +10,7 @@ import Login from './components/views/Login/Login';
 import Homepage from './components/views/Homepage/Homepage';
 import Tables from './components/views/Tables/Tables';
 import Waiter from './components/views/Waiter/Waiter';
+import WaiterOrder from './components/views/Waiter/WaiterOrder';
 import Kitchen from './components/views/Kitchen/Kitchen';
 
 const theme = createMuiTheme({
@@ -33,6 +34,7 @@ const App = () => (
             <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
             <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
             <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} />
+            <Route exact path={process.env.PUBLIC_URL + '/waiter/order/:1'} component={WaiterOrder} />
           </Switch>
         </MainLayout>
       </ThemeProvider>

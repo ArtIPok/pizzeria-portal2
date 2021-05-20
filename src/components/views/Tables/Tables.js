@@ -11,47 +11,16 @@ import DatePicker from '../../../utils/DatePicker';
 
 
 const demoContent = [
-  {id: '1', status: 'free', order: null},
-  {id: '2', status: 'thinking', order: null},
-  {id: '3', status: 'ordered', order: 123},
-  {id: '4', status: 'prepared', order: 234},
-  {id: '5', status: 'delivered', order: 345},
-  {id: '6', status: 'paid', order: 456},
+  {hour: '12:00 - 12:30', stateT1: 'free', stateT2: 'free', stateT3: 'O123'},
+  {hour: '12:30 - 13:00', stateT1: 'free', stateT2: 'O234', stateT3: 'O123'},
+  {hour: '13:00 - 13:30', stateT1: 'free', stateT2: 'free', stateT3: 'free'},
+  {hour: '13:30 - 14:00', stateT1: 'E123', stateT2: 'free', stateT3: 'O456'},
+  {hour: '14:00 - 14:30', stateT1: 'E123', stateT2: 'O345', stateT3: 'O456'},
+  {hour: '14:30 - 15:00', stateT1: 'free', stateT2: 'O345', stateT3: 'O456'},
+  {hour: '15:00 - 15:30', stateT1: 'O567', stateT2: 'E234', stateT3: 'free'},
+  {hour: '15:30 - 16:00', stateT1: 'O567', stateT2: 'E234', stateT3: 'E345'},
+  {hour: '16:00 - 16:30', stateT1: 'O567', stateT2: 'E234', stateT3: 'E345'},
 ];
-
-const renderActions = status => {
-  switch (status) {
-    case 'free':
-      return (
-        <>
-          <Button>thinking</Button>
-          <Button>new order</Button>
-        </>
-      );
-    case 'thinking':
-      return (
-        <Button>new order</Button>
-      );
-    case 'ordered':
-      return (
-        <Button>prepared</Button>
-      );
-    case 'prepared':
-      return (
-        <Button>delivered</Button>
-      );
-    case 'delivered':
-      return (
-        <Button>paid</Button>
-      );
-    case 'paid':
-      return (
-        <Button>free</Button>
-      );
-    default:
-      return null;
-  }
-};
 
 class Tables extends React.Component {
   render(){
@@ -62,30 +31,38 @@ class Tables extends React.Component {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Table</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Order</TableCell>
-                <TableCell>Action</TableCell>
+                <TableCell>Hour</TableCell>
+                <TableCell>Table no 1</TableCell>
+                <TableCell>Table no 2</TableCell>
+                <TableCell>Table no 3</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {demoContent.map(row => (
-                <TableRow key={row.id}>
+                <TableRow key={row.hour}>
                   <TableCell component="th" scope="row">
-                    {row.id}
+                    {row.hour}
                   </TableCell>
                   <TableCell>
-                    {row.status}
-                  </TableCell>
-                  <TableCell>
-                    {row.order && (
-                      <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
-                        {row.order}
+                    {row.stateT1 && (
+                      <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.stateT1}`}>
+                        {row.stateT1}
                       </Button>
                     )}
                   </TableCell>
                   <TableCell>
-                    {renderActions(row.status)}
+                    {row.stateT2 && (
+                      <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.stateT2}`}>
+                        {row.stateT2}
+                      </Button>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {row.stateT3 && (
+                      <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.stateT3}`}>
+                        {row.stateT3}
+                      </Button>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
